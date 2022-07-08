@@ -15,6 +15,7 @@ const videoGamesApi = async () => {
           name: game.name,
           background_image: game.background_image,
           genres: game.genres.map(v => v.name),
+          platforms: game.platforms.map(p => p.platform.name)
       })
    })
     response = await axios.get(response.data.next)
