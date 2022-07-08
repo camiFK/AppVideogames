@@ -1,0 +1,26 @@
+.paginate{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
+    }
+  
+  .numbers{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 45px;
+      margin: 0px 5px;
+      border-radius: 5px;
+      background: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .numbers:hover{
+      background:rgb(190, 190, 190);
+      cursor: pointer;
+    }

@@ -1,0 +1,21 @@
+.searchbar {
+    justify-content: center;
+    width: 250px;
+    height: 30px;
+}
+
+.input {
+    width: 180px;
+    height: 25px;
+    border-radius: 4px;
+}
+
+.searchbtn {
+    width: 60px;
+    height: 25px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+.searchbtn:hover{
+    cursor: pointer;
+}

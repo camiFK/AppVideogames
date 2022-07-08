@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Goldman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Yeseva+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+.detailContainer {
+  place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+  
+.detailCard {
+  position: relative;
+   justify-content: center;
+   width: 60%;
+   height: 95%;
+   margin: 70px;
+   padding: 10px;
+   background-color: rgb(0, 0, 0);
+   border-radius: 8px;
+   margin-top: 80px;
+}
+
+.content {margin: 10px; overflow: hidden; padding: 10px;}
+
+@mixin titles {
+    color: white;
+    font-family: 'Dosis', sans-serif;
+    margin-top: 5px;
+}
+
+.btn {
+  background-color: rgb(189, 189, 189);
+  border: 1px solid white;
+  color: black;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: absolute;
+  font-size: 10px;
+  margin: 20px;
+
+}
+.btn:hover{
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+.imgctn {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;}
+
+.image { 
+  border-radius: 10px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.title {@include titles();}
+
+.name {
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color: white;
+}
+
+.list, .r, .desc {
+  color: white
+}
+
+.desc {
+  line-height: 1,5;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;  
+  margin-top: 5px;
+}
+
+.genre, .plat {
+   font-size: 12px;
+    display: grid;
+    gap: 10px;
+}
+
+.table {
+  padding: 12px;
+  border: 1px solid white;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
