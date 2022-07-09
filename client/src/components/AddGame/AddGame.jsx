@@ -42,7 +42,7 @@ const AddGame = () => {
       }}
     >
      {({handleSubmit, errors, touched}) => (
-        
+
         <div className={Styles.container}>
         <Form onSubmit={handleSubmit} className={Styles.form}>
 
@@ -53,6 +53,26 @@ const AddGame = () => {
             <label>Description</label>
             <Field type="text" name="description" />
             <ErrorMessage name="description" component={() => ( <div>{errors.description}</div>  )} />
+
+            <label>Release date</label>
+            <Field type="date" name="date" />
+            <ErrorMessage name="date" component={() => ( <div>{errors.description}</div>  )} />
+
+            <label>Rating</label>
+            <Field type="range" min="1" max="5" name="range" />
+            <ErrorMessage name="range" component={() => ( <div>{errors.description}</div>  )} />
+
+            <label>Image</label>
+            <Field type="text" name="image" />
+            <ErrorMessage name="image" component={() => ( <div>{errors.description}</div>  )} />
+
+            <label>Genres</label>
+            <Field type="text" name="genres" />
+            <ErrorMessage name="genres" component={() => ( <div>{errors.description}</div>  )} />
+
+            <label>Platforms</label>
+            <Field type="text" name="platforms" />
+            <ErrorMessage name="platforms" component={() => ( <div>{errors.description}</div>  )} />
 
             <button type='submit'>Submit</button>
 
