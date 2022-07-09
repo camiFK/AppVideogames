@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Styles from './AddGame.module.scss'
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { postVideogame, getGenres, getPlatforms } from '../../redux/actions';
@@ -8,6 +8,8 @@ import { postVideogame, getGenres, getPlatforms } from '../../redux/actions';
 const AddGame = () => {
 
     const dispatch = useDispatch()
+    const [selectedGenres, setSelectedGenres] = useState('')
+    const [selectedPlatforms, setSelectedPlatforms] = useState('')
 
     useEffect(() => {
         dispatch(getGenres())
@@ -16,8 +18,10 @@ const AddGame = () => {
 
     const genres = useSelector((state) => state.allGenres)
     const platforms = useSelector((state) => state.allPlatforms)
-
-    console.log(genres)
+    
+    const handleGenre = (e) => {
+        setSelectedGenres(e.target.value)
+    }
 
   return (
     <>
@@ -28,7 +32,7 @@ const AddGame = () => {
         released: '',
         rating: '',
         image: '',
-        genres: [],
+        genres: [1, 2, 3],
         plataformas: []
         }}
 
@@ -79,46 +83,68 @@ const AddGame = () => {
 
             <label>Name</label>
             <Field placeholder="Enter name" type="text" name="name" className={Styles.ctninput}/>
-            <ErrorMessage name="name" component={() => ( <div>{errors.name}</div> )} />
+            <ErrorMessage name="name" component={() => ( <div className={Styles.msg}>{errors.name}</div> )} />
 
             <label>Description</label>
             <Field placeholder="Enter description" type="text" name="description" className={Styles.ctninput}/>
-            <ErrorMessage name="description" component={() => ( <div>{errors.description}</div>  )} />
+            <ErrorMessage name="description" component={() => ( <div className={Styles.msg}>{errors.description}</div>  )} />
 
             <label>Release date</label>
             <Field type="date" name="released" />
-            <ErrorMessage name="released" component={() => ( <div>{errors.released}</div>  )} />
+            <ErrorMessage name="released" component={() => ( <div className={Styles.msg}>{errors.released}</div>  )} />
 
             <label>Rating</label>
             <Field type="range" min="1" max="5" name="rating" />{values.rating}
-            <ErrorMessage name="rating" component={() => ( <div>{errors.rating}</div>  )} />
+            <ErrorMessage name="rating" component={() => ( <div className={Styles.msg}>{errors.rating}</div>  )} />
 
             <label>Image</label>
             <Field placeholder="Enter image" type="text" name="image" className={Styles.ctninput}/>
-            <ErrorMessage name="image" component={() => ( <div>{errors.image}</div>  )} />
+            <ErrorMessage name="image" component={() => ( <div className={Styles.msg}>{errors.image}</div>  )} />
 
             <label>Genres</label>
-            <Field as="select" name="genres" className={Styles.select}>
-            {
+            <FieldArray as="select" name="genres" className={Styles.select}>
+                {
+                    fieldArrayprops => {
+                       console.log(fieldArrayprops)
+                       const {push, remove} = fieldArrayprops
+
+                            {
+                                genres.map((genre, index) => (
+                                    <option key={index}>
+                                        {genre}
+                                    </option>
+                                ))
+                            }
+                       
+                    }
+                }
+            {/* {
                 genres?.map(genre => (
                     <option key={genre.id} value={genre}>{genre}</option>
                     ))
-                }
-            </Field>
-            <ErrorMessage name="genres" component={() => ( <div>{errors.genres}</div>  )} />
+                } */}
+            </FieldArray>
+            <ErrorMessage name="genres" component={() => ( <div className={Styles.msg}>{errors.genres}</div>  )} />
+
+            {/* {
+                values.genres?.map(genre => (
+                    <div key={genre.id} className={Styles.genre}>{genre}</div>
+                ))
+            } */}
 
             <label>Platforms</label>
-            <Field as="select" name="plataformas" className={Styles.select}>
-            {
+            <FieldArray as="select" name="plataformas" className={Styles.select}>
+            {/* {
                 platforms?.map(platform => (
                     <option key={platform.id} value={platform}>{platform}</option>
                     ))
-                }
-            </Field>
-            <ErrorMessage name="plataformas" component={() => ( <div>{errors.plataformas}</div>  )} />
+                } */}
+            </FieldArray>
+            <ErrorMessage name="plataformas" component={() => ( <div className={Styles.msg}>{errors.plataformas}</div>  )} />
 
             <button type='submit' className={Styles.submitbtn}>CREATE</button>
-                </div>
+                
+        </div>
 
         </Form>
         </div>
