@@ -4,7 +4,8 @@ import {Route, Routes} from 'react-router-dom'
 import Landing from './components/Landing/Landing';
 import Home from './components/Home/Home';
 import Detail from './components/Detail/Detail';
-import AddGame from './components/AddVideogame/AddGame';
+//import AddGame from './components/AddVideogame/AddGame';
+import AddGame from './components/AddGame/AddGame';
 
 function App() {
   return (
