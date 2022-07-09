@@ -23,17 +23,16 @@ const Home = () => {
      const currentVideogames = reducerVideoGames.slice(firstVideogame, lastVideogame);
 
       const paginate = (pageNumber) => setcurrentPage(pageNumber)
-     
+
       const [loading, setLoading] = useState(false)
 
       useEffect(() => {
         dispatch(getAllVideoGames());
-         setLoading(true);
-         setTimeout(() => {
-         setLoading(false)
-    }, 6000)
+        setLoading(true);
+        setTimeout(() => {
+        setLoading(false)
+      }, 6000)
       }, [dispatch]) 
-
 
       if (loading) {
         return <Loader/>

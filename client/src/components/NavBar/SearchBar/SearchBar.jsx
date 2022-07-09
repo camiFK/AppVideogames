@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Styles from './SearchBar.module.scss'
 import {useDispatch} from 'react-redux'
 import { getVideogameByName } from '../../../redux/actions'
-import Spinner from '../../helpers/Spinner'
+import Loader from '../../helpers/Loader'
 
 const SearchBar = ({setcurrentPage, loading, setLoading}) => {
 
@@ -26,10 +26,6 @@ const SearchBar = ({setcurrentPage, loading, setLoading}) => {
     setcurrentPage(1)
     setName('')
   }
-
-  if (loading) {
-    return <Spinner/>
-  } else
 
   return (
     <div>

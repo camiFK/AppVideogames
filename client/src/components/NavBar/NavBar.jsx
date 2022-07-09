@@ -10,18 +10,24 @@ import { useDispatch} from 'react-redux'
 import { useState } from 'react'
 import { getAllVideoGames } from '../../redux/actions'
 
-const NavBar = ({setcurrentPage}) => {
+const NavBar = ({setcurrentPage, loading, setLoading}) => {
 
 
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-  const [loading, setLoading] = useState(false)
-
   const handleClick = (e) => {
     e.preventDefault()
     dispatch(getAllVideoGames())
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false)
+  }, 5000)
   }
+
+  if (loading) {
+    return <Loader/>
+  } 
 
    return (
     <div className={Styles.navcontainer}>
