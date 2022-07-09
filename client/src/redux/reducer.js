@@ -8,7 +8,7 @@ const initialState = {
 
 
 const rootReducer = (state = initialState, action) => {
-
+  const {newVideogame} = action
     switch(action.type) {  
         case 'GET_ALL_VIDEOGAMES':
             return {
@@ -81,6 +81,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 videogameDetail: action.payload
+            }
+        case 'POST_VIDEOGAME':
+            return {
+                ...state,
+                allVideoGames: [...state.allVideoGames, ...newVideogame]
             }
         
         default: return {...state}

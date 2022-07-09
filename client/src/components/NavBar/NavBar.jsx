@@ -34,7 +34,7 @@ const NavBar = ({setcurrentPage, loading, setLoading}) => {
  
        <button
        className={Styles.navbtn}
-       onClick={() => navigate('/')}
+       onClick={() => navigate('/create')}
        >Create</button>
       <FilterPlatforms setcurrentPage={setcurrentPage}/>
       <FilterGenre setcurrentPage={setcurrentPage}/> 

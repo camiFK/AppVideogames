@@ -62,3 +62,12 @@ export const filterByPlatform = (payload) => {
 export const reset = () => {
   return {type: 'reset_videogame'}
 }
+
+export const postVideogame = (input) => {
+  return async (dispatch) => {
+    try {
+      const newVideogame = await axios.post(`http://localhost:3001/videogames`, input)
+      dispatch({type: 'POST_VIDEOGAME', payload: newVideogame})
+    } catch (error) { console.log(error) }
+  }
+}
