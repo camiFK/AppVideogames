@@ -8,8 +8,8 @@ import { postVideogame, getGenres, getPlatforms } from '../../redux/actions';
 const AddGame = () => {
 
     const dispatch = useDispatch()
-    const [selectedGenres, setSelectedGenres] = useState('')
-    const [selectedPlatforms, setSelectedPlatforms] = useState('')
+    const [myGenres, setMyGenres] = useState([])
+    const [selectedGenres, setSelectedGenres] = useState([])
 
     useEffect(() => {
         dispatch(getGenres())
@@ -18,13 +18,9 @@ const AddGame = () => {
 
     const genres = useSelector((state) => state.allGenres)
     const platforms = useSelector((state) => state.allPlatforms)
-    
-    const handleGenre = (e) => {
-        setSelectedGenres(e.target.value)
-    }
 
-  return (
-    <>
+    return (
+      <>
     <Formik
         initialValues={{
         name: '',
@@ -32,10 +28,32 @@ const AddGame = () => {
         released: '',
         rating: '',
         image: '',
-        genres: [1, 2, 3],
-        plataformas: []
-        }}
+        genres: [],
+        plataformas: [],     
+      }}
 
+      handleGenres={(e, values) => {
+          if(e.target.value) {
+            if (!values.genres.includes(e.target.value)) {
+              values({
+                ...values,
+                genres: [...values.genres, e.target.value]
+              })
+          }
+      }
+      }}
+
+      handlePlatforms={(e, values) => {
+          if(e.target.value) {
+            if (!values.plataformas.includes(e.target.value)) {
+              values({
+                ...values,
+                plataformas: [...values.plataformas, e.target.value]
+              })
+          }
+      }
+      }}
+      
         validate={(values) => {
             let errores = {}
           if (!values.name) 
@@ -73,13 +91,12 @@ const AddGame = () => {
         resetForm();
       }}
     >
-     {({handleSubmit, errors, values}) => (
-
+     {({handleSubmit, errors, values, handleGenres, handlePlatforms}) => (
+          
         <div className={Styles.container}>
         <Form onSubmit={handleSubmit} className={Styles.form}>
-
+            
             <div className={Styles.content}>
-
 
             <label>Name</label>
             <Field placeholder="Enter name" type="text" name="name" className={Styles.ctninput}/>
@@ -101,45 +118,31 @@ const AddGame = () => {
             <Field placeholder="Enter image" type="text" name="image" className={Styles.ctninput}/>
             <ErrorMessage name="image" component={() => ( <div className={Styles.msg}>{errors.image}</div>  )} />
 
-            <label>Genres</label>
-            <FieldArray as="select" name="genres" className={Styles.select}>
-                {
-                    fieldArrayprops => {
-                       console.log(fieldArrayprops)
-                       const {push, remove} = fieldArrayprops
+            <label>Genres</label>      
+            <select name="genres" onChange={(e) => {handleGenres(e)}} className={Styles.select}>
+                {genres?.map(genre => (
+                    <option key={genre.id} value={values.genres}>{genre}</option>
+                ))}
+            </select>
 
-                            {
-                                genres.map((genre, index) => (
-                                    <option key={index}>
-                                        {genre}
-                                    </option>
-                                ))
-                            }
-                       
-                    }
-                }
-            {/* {
-                genres?.map(genre => (
-                    <option key={genre.id} value={genre}>{genre}</option>
-                    ))
-                } */}
-            </FieldArray>
+            <div>
+              {
+                values.genres?.map(el => (
+                  <p key={el} className={Styles.selected}>{el}</p>
+                ))
+              }
+            </div>
+
+            
             <ErrorMessage name="genres" component={() => ( <div className={Styles.msg}>{errors.genres}</div>  )} />
 
-            {/* {
-                values.genres?.map(genre => (
-                    <div key={genre.id} className={Styles.genre}>{genre}</div>
-                ))
-            } */}
-
             <label>Platforms</label>
-            <FieldArray as="select" name="plataformas" className={Styles.select}>
-            {/* {
-                platforms?.map(platform => (
-                    <option key={platform.id} value={platform}>{platform}</option>
-                    ))
-                } */}
-            </FieldArray>
+            <select name="plataformas" onChange={(e) => {handlePlatforms(e)}} className={Styles.select}>
+                {platforms?.map(platform => (
+                    <option key={platform.id} value={values.plataformas}>{platform}</option>
+                ))}
+            </select>
+            
             <ErrorMessage name="plataformas" component={() => ( <div className={Styles.msg}>{errors.plataformas}</div>  )} />
 
             <button type='submit' className={Styles.submitbtn}>CREATE</button>
@@ -148,9 +151,7 @@ const AddGame = () => {
 
         </Form>
         </div>
-     )
-
-     }
+     )}
 
     </Formik>
         </>
