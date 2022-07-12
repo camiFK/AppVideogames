@@ -8,6 +8,10 @@
     padding: 8px;
     justify-content: center;
     display: flex;
+
+    &:hover {
+        box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.5);
+    }
 }
 
 .cards {
