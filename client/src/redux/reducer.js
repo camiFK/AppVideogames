@@ -44,7 +44,7 @@ const rootReducer = (state = initialState, action) => {
             : videogameCopy.filter(videogame => { 
 
                 for (const el of videogame.genres) {
-                    if (el === action.payload) { return videogame }
+                    if (el.name === action.payload) { return videogame }
                 }
             })
 
@@ -64,7 +64,7 @@ const rootReducer = (state = initialState, action) => {
             : videogameCopy2.filter(videogame => {
 
                 for (const el of videogame.platforms) {
-                    if (el === action.payload) { return videogame }
+                    if (el.name === action.payload) { return videogame }
                 }
             })
 
