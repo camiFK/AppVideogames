@@ -37,7 +37,7 @@ export const getGenres = () => {
   return async (dispatch) => {
     try {
       const json = await axios.get(`http://localhost:3001/genres`)
-      dispatch({type: 'GET_GENRES', payload: json.data.map(genre => genre.name)})
+      dispatch({type: 'GET_GENRES', payload: json.data})
     } catch (error) { console.log(error) }
   }
 }
@@ -46,7 +46,7 @@ export const getPlatforms = () => {
   return async (dispatch) => {
     try {
       const json = await axios.get(`http://localhost:3001/platforms`)
-      dispatch({type: 'GET_PLATFORMS', payload: json.data.map(platform => platform.name)})     
+      dispatch({type: 'GET_PLATFORMS', payload: json.data})     
     } catch (error) { console.log(error) }
   }
 }
@@ -66,8 +66,8 @@ export const reset = () => {
 export const postVideogame = (input) => {
   return async (dispatch) => {
     try {
-      const newVideogame = await axios.post(`http://localhost:3001/videogames`, input)
-      dispatch({type: 'POST_VIDEOGAME', payload: newVideogame})
+      let newVideogame = await axios.post(`http://localhost:3001/create`, input)
+      dispatch({type: 'POST_VIDEOGAME', newVideogame})
     } catch (error) { console.log(error) }
   }
 }

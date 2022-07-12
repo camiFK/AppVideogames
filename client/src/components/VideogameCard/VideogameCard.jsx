@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 const VideogameCard = ({name, image, genres, id}) => {
 
+  console.log(genres)
+
     return (
         <div className={Styles.containerVG}>
             <div className={Styles.cards}>
@@ -16,9 +18,9 @@ const VideogameCard = ({name, image, genres, id}) => {
 
             <div className={Styles.genres}>
               Genres:
-              <ul>
-                {genres?.map(g => (<li>{g}</li>))}
-              </ul>
+              <p>
+                {genres?.map(el => (<li>{el.name}</li>))}
+              </p>
             </div>
 
             </div>

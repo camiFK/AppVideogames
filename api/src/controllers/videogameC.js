@@ -1,4 +1,4 @@
-const {Genres, Videogame} = require('../db')
+const {Genres, Videogame, Platforms} = require('../db')
 const axios = require('axios')
 const {apikey} = process.env;
 
@@ -7,15 +7,15 @@ const videoGamesApi = async () => {
     let allGamesApi = []
     let pages = 0;
   
-   while (pages < 6) { 
+   while (pages < 5) { 
       pages++;
       response.data.results.map(game => {
          allGamesApi.push({
           id: game.id,
           name: game.name,
           background_image: game.background_image,
-          genres: game.genres.map(v => v.name),
-          platforms: game.platforms.map(p => p.platform.name)
+          genres: game.genres.map(v => { return { name: v.name}}),
+          platforms: game.platforms.map(p => { return {name: p.platform.name}})
       })
    })
     response = await axios.get(response.data.next)
@@ -26,11 +26,17 @@ const videoGamesApi = async () => {
 
   const videoGamesDb = async () => { 
     const allGamesDb = await Videogame.findAll({
-     include: { 
+     include: [
+      { 
        model: Genres,
        attributes: ['name'],
        through: {attributes: [] }
-      }
+      },
+      {
+        model: Platforms,
+        attributes: ["name"],
+        through: { attributes: [] }
+    }]
    })
    return allGamesDb;
   }

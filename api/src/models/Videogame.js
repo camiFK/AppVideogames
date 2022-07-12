@@ -25,9 +25,9 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.INTEGER,
     },
-    plataformas: {
+    image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     creadoEnDb: {
       type: DataTypes.BOOLEAN,

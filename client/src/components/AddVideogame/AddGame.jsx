@@ -8,7 +8,6 @@ const AddGame = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [errors, setError] = useState({})
     
     useEffect(() => {
         dispatch(getGenres())
@@ -18,6 +17,7 @@ const AddGame = () => {
     const genres = useSelector(state => state.allGenres)
     const platforms = useSelector(state => state.allPlatforms)
     console.log(platforms)
+    console.log(genres)
 
     const [input, setInput] = useState({
         name: '',
@@ -26,7 +26,7 @@ const AddGame = () => {
         rating: '',
         image: '',
         genres: [],
-        plataformas: []
+        platforms: []
     })
 
     function handleChange(e) {
@@ -38,7 +38,7 @@ const AddGame = () => {
       }
 
       function handlePlatforms(e) {
-        setInput({ ...input, plataformas: [...input.plataformas, e.target.value] })
+        setInput({ ...input, platforms: [...input.platforms, e.target.value] })
       }
 
       const handleDeleteGenre = (e) => {
@@ -46,12 +46,13 @@ const AddGame = () => {
       }
 
       const handleDeletePlatform = (e) => {
-        setInput({ ...input,  plataformas: input.plataformas.filter(el => el !== e) })
+        setInput({ ...input,  platforms: input.platforms.filter(el => el !== e) })
       }
 
       const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(postVideogame(input))
+        console.log(input)
         alert('Videogame created!')
         navigate('/home')
       }
@@ -62,8 +63,8 @@ const AddGame = () => {
 
         <form className={Styles.form} onSubmit={(e) => handleSubmit(e)}>
 
-        <button onClick={() => navigate('/home')}>Home</button>
-           <h1>Create your own videogame!</h1> 
+        <button className={Styles.homebtn} onClick={() => navigate('/home')}>Home</button>
+           <h2>Create your own videogame!</h2> 
           <div className={Styles.content}>
 
             <input 
@@ -114,7 +115,7 @@ const AddGame = () => {
             <label>Genres:</label>
             <select name="genres" value={input.genres} onChange={handleGenre} className={Styles.select}>
                 <option value="">Select a genre</option>
-                {genres?.map(genre => <option key={genre.id} value={genres.id}>{genre}</option>)}
+                {genres?.map(genre => <option key={genre.id} value={genres.name}>{genre.name}</option>)}
             </select>
 
             <div className={Styles.genrectn}>
@@ -129,16 +130,16 @@ const AddGame = () => {
             </div>
 
             <label>Platforms:</label>
-            <select name="plataformas" value={input.plataformas} onChange={handlePlatforms} className={Styles.select}>
+            <select name="platforms" value={input.platforms} onChange={handlePlatforms} className={Styles.select}>
                 <option value="">Select a platform</option>
-                {platforms?.map(platform => <option key={platform.id} value={platform.id}>{platform}</option>)}
+                {platforms?.map(platform => <option key={platform.id} value={platform.name}>{platform.name}</option>)}
             </select>
 
             <div className={Styles.platformctn}>
               {
-                input.plataformas.map(platform => (
+                input.platforms.map(platform => (
                   <div className={Styles.selected}>
-                    <p key={platform} >{platform}</p>
+                    <p key={platform}>{platform}</p>
                     <button className={Styles.selectbtn} onClick={() => handleDeletePlatform(platform)}>X</button>
                 </div>
                 ))

@@ -28,8 +28,8 @@ const FilterPlatforms = ({setcurrentPage}) => {
         <option className={Styles.optionctn} value='all'>All</option>
             {
                 platforms?.map((platform, index) => (
-                    <option className={Styles.optionctn} key={index} value={platform}>
-                        {platform}
+                    <option className={Styles.optionctn} key={index} value={platform.name}>
+                        {platform.name}
                     </option>
                 ))
             }

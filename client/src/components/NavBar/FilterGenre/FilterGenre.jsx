@@ -27,8 +27,8 @@ const FilterGenre = ({setcurrentPage}) => {
         <option className={Styles.option} value='all'>All</option>
             {
                 genres?.map((genre, index) => (
-                    <option className={Styles.option} key={index} value={genre}>
-                        {genre}
+                    <option className={Styles.option} key={index} value={genre.name}>
+                        {genre.name}
                     </option>
                 ))
             }

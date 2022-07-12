@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { getAllVideoGames } from '../../redux/actions'
+import { getAllVideoGames, getGenres } from '../../redux/actions'
 import NavBar from '../NavBar/NavBar'
 import Pagination from '../Pagination/Pagination'
 import VideogameCard from '../VideogameCard/VideogameCard'
@@ -14,7 +14,6 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const reducerVideoGames = useSelector((state) => state.allVideoGames)
-    console.log(reducerVideoGames)
 
      const [currentPage, setcurrentPage] = useState(1);
      const [videogamesPerPage] = useState(12);
@@ -28,6 +27,7 @@ const Home = () => {
 
       useEffect(() => {
         dispatch(getAllVideoGames());
+        dispatch(getGenres())
         setLoading(true);
         setTimeout(() => {
         setLoading(false)
@@ -62,7 +62,7 @@ const Home = () => {
             currentVideogames?.map((videogame, index) => {
               return (
                 <VideogameCard 
-                key={index}
+                key={videogame.id}
                 id={videogame.id}
                 name={videogame.name}
                 image={videogame.background_image}
