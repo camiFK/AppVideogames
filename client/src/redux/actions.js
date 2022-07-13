@@ -1,3 +1,4 @@
+import swal from 'sweetalert'
 const axios = require('axios');
 // Acá se conectan el front y el back!!
 // Conecto con la ruta que cree en el back y me trae todos los videojuegos 
@@ -17,7 +18,11 @@ export const getVideogameByName = (name) => {
       const json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
       dispatch({type: 'GET_VIDEOGAME', payload: json.data})
     } catch (error) {
-      alert('Sorry, no results found')
+      swal({
+        title: "Error",
+        text: `${name} was not found`,
+        icon: "error",
+      })
     }
   }
 }

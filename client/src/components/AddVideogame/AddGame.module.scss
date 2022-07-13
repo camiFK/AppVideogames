@@ -18,6 +18,10 @@
     border-radius: 8px;
 }
 
+.formtitle {
+    margin-bottom: 10px;
+}
+
 .content {
     display: grid;
     width: 50%;
@@ -104,6 +108,7 @@
     text-align: center;
     text-decoration: none;
     margin: 4px 2px;
+    margin-bottom: 10px;
     cursor: pointer;
     font-size: 10px;
 

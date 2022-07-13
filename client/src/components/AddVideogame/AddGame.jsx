@@ -84,7 +84,7 @@ const AddGame = () => {
         <form className={Styles.form} onSubmit={(e) => handleSubmit(e)}>
 
         <button className={Styles.homebtn} onClick={() => navigate('/home')}>Home</button>
-           <h2>Create your own videogame!</h2> 
+           <h2 className={Styles.formtitle}>Create your own videogame!</h2> 
           <div className={Styles.content}>
 
             <input 
