@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPlatforms, getGenres, postVideogame} from '../../redux/actions'
 import Styles from './AddGame.module.scss'
@@ -59,7 +59,6 @@ const AddGame = () => {
       const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(postVideogame(input))
-        console.log(input)
         swal({
             title: "Success!",
             text: "Videogame added successfully!",

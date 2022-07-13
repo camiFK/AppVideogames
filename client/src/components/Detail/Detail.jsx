@@ -17,7 +17,6 @@ const Detail = () => {
     }, [dispatch, id]);
 
     const details = useSelector((state) => state.videogameDetail)
-    console.log(details)
 
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(details.description, "text/html");

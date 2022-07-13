@@ -14,7 +14,6 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const reducerVideoGames = useSelector((state) => state.allVideoGames)
-    console.log(reducerVideoGames)
 
      const [currentPage, setcurrentPage] = useState(1);
      const [videogamesPerPage] = useState(12);

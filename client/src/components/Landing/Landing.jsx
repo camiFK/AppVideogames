@@ -12,14 +12,12 @@ const Landing = () => {
 
         <div className={Styles.elements}>
           <h1 className={Styles.title}>VideoGames App</h1>
-             <p className={Styles.description}>
-               Explore, navigate and create awesome videogames.
-             </p>
   
             <button 
              className={Styles.myButton} 
              onClick={() => navigate('/home')}
              >Start</button>
+             
          </div>
 
        </div>
