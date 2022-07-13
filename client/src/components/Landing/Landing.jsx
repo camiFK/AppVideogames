@@ -19,7 +19,7 @@ const Landing = () => {
             <button 
              className={Styles.myButton} 
              onClick={() => navigate('/home')}
-             >Home</button>
+             >Start</button>
          </div>
 
        </div>

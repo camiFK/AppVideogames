@@ -67,7 +67,7 @@ export const postVideogame = (input) => {
   return async (dispatch) => {
     try {
       let newVideogame = await axios.post(`http://localhost:3001/create`, input)
-      dispatch({type: 'POST_VIDEOGAME', newVideogame})
+      return newVideogame
     } catch (error) { console.log(error) }
   }
 }

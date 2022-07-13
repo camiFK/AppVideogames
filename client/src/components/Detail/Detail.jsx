@@ -17,6 +17,7 @@ const Detail = () => {
     }, [dispatch, id]);
 
     const details = useSelector((state) => state.videogameDetail)
+    console.log(details)
 
     var parser = new DOMParser();
     var htmlDoc = parser.parseFromString(details.description, "text/html");
@@ -49,8 +50,8 @@ const Detail = () => {
 
                     <h3 className={Styles.title}>Genres</h3>
                   <h3 className={Styles.title}>Platforms</h3>
-                    <p className={Styles.genre}>{details.genres?.map(g => (<li className={Styles.list}>{g}</li>))}</p>
-                    <p className={Styles.plat}>{details.platforms?.map(p => (<li className={Styles.list}>{p}</li>))}</p>
+                    <p className={Styles.genre}>{details.genres?.map(g => (<li className={Styles.list}>{g.name}</li>))}</p>
+                    <p className={Styles.plat}>{details.platforms?.map(p => (<li className={Styles.list}>{p.name}</li>))}</p>
                   
                  </div>
 

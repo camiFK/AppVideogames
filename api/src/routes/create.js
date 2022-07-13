@@ -5,7 +5,7 @@ const router = Router();
 //const {apikey} = process.env;
 
 router.post('/', async (req, res) => {
-    let {name, description, released, rating, genres, platforms, image, createdDb} = req.body
+    let {name, description, released, rating, genres, platforms, background_image, createdDb} = req.body
 
      if (!name || !description || !released || !rating || !genres || !platforms) 
       return res.status(404).send('All fields required')
@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         description,
         released,
         rating, 
-        image,
+        background_image,
         createdDb
       }) //
 

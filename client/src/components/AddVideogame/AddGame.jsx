@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPlatforms, getGenres, postVideogame} from '../../redux/actions'
 import Styles from './AddGame.module.scss'
+import swal from 'sweetalert';
 
 const AddGame = () => {
 
@@ -16,15 +17,13 @@ const AddGame = () => {
 
     const genres = useSelector(state => state.allGenres)
     const platforms = useSelector(state => state.allPlatforms)
-    console.log(platforms)
-    console.log(genres)
 
     const [input, setInput] = useState({
         name: '',
         description: '',
         released: '',
         rating: '',
-        image: '',
+        background_image: '',
         genres: [],
         platforms: []
     })
@@ -34,26 +33,47 @@ const AddGame = () => {
       }
 
       function handleGenre(e) {
-        setInput({ ...input, genres: [...input.genres, e.target.value] })
+        setInput({ ...input, 
+          genres: [...input.genres, e.target.value] 
+        })
       }
 
       function handlePlatforms(e) {
-        setInput({ ...input, platforms: [...input.platforms, e.target.value] })
+        setInput({ ...input, 
+          platforms: [...input.platforms, e.target.value] 
+        })
       }
 
       const handleDeleteGenre = (e) => {
-        setInput({ ...input, genres: input.genres.filter(el => el !== e)})
+        setInput({ ...input, 
+          genres: input.genres.filter(el => el !== e)
+        })
       }
 
       const handleDeletePlatform = (e) => {
-        setInput({ ...input,  platforms: input.platforms.filter(el => el !== e) })
+        setInput({ ...input,  
+          platforms: input.platforms.filter(el => el !== e) 
+        })
       }
 
       const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(postVideogame(input))
         console.log(input)
-        alert('Videogame created!')
+        swal({
+            title: "Success!",
+            text: "Videogame added successfully!",
+            icon: "success",
+        })
+        setInput({
+          name: '',
+          description: '',
+          released: '',
+          rating: '',
+          background_image: '',
+          genres: [],
+          platforms: []
+        })
         navigate('/home')
       }
 
@@ -106,16 +126,16 @@ const AddGame = () => {
             <input 
             required 
             type="text" 
-            name="image" 
+            name="background_image" 
             placeholder='Image'
-            value={input.image} 
+            value={input.background_image} 
             onChange={handleChange} 
             className={Styles.ctninput}/>
 
             <label>Genres:</label>
-            <select name="genres" value={input.genres} onChange={handleGenre} className={Styles.select}>
+            <select name="genres" onChange={handleGenre} className={Styles.select}>
                 <option value="">Select a genre</option>
-                {genres?.map(genre => <option key={genre.id} value={genres.name}>{genre.name}</option>)}
+                {genres?.map(genre => <option key={genre.id} value={genre.name}>{genre.name}</option>)}
             </select>
 
             <div className={Styles.genrectn}>
@@ -130,7 +150,7 @@ const AddGame = () => {
             </div>
 
             <label>Platforms:</label>
-            <select name="platforms" value={input.platforms} onChange={handlePlatforms} className={Styles.select}>
+            <select name="platforms" onChange={handlePlatforms} className={Styles.select}>
                 <option value="">Select a platform</option>
                 {platforms?.map(platform => <option key={platform.id} value={platform.name}>{platform.name}</option>)}
             </select>

@@ -31,7 +31,7 @@ const Home = () => {
         setLoading(true);
         setTimeout(() => {
         setLoading(false)
-      }, 6000)
+      }, 7000)
       }, [dispatch]) 
 
       if (loading) {

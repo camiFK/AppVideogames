@@ -25,7 +25,7 @@ module.exports = (sequelize) => {
     rating: {
       type: DataTypes.INTEGER,
     },
-    image: {
+    background_image: {
       type: DataTypes.STRING,
       allowNull: true,
     },

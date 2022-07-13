@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 
 const VideogameCard = ({name, image, genres, id}) => {
 
-  console.log(genres)
-
     return (
         <div className={Styles.containerVG}>
             <div className={Styles.cards}>

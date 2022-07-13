@@ -69,10 +69,10 @@ const videoGamesApi = async () => {
         name: data.name,
         description: data.description,
         background_image: data.background_image,
-        genres: data.genres.map(v => v.name),
+        genres: data.genres.map(v => { return { name: v.name}}),
         released: data.released,
         rating: data.rating,
-        platforms: data.platforms.map(p => p.platform.name)
+        platforms: data.platforms.map(p => { return {name: p.platform.name}})
       }
       return gameDetail;
     }
