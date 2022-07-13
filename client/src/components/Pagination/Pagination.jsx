@@ -1,11 +1,10 @@
 import React from "react";
 import Styles from './Pagination.module.scss'
 
-const Pagination = ({videogamesPerPage, allVideoGames, paginate}) => {
+const Pagination = ({videogamesPerPage, reducerVideoGames, paginate}) => {
      const pageNumber = []
-     const myPages = Math.ceil(allVideoGames/videogamesPerPage)
 
-     for (let i = 1; i < myPages; i++) {
+     for (let i = 1; i <= Math.ceil(reducerVideoGames/videogamesPerPage); i++) {
         pageNumber.push(i)
      }
 

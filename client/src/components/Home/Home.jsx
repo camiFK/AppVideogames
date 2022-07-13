@@ -14,6 +14,7 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const reducerVideoGames = useSelector((state) => state.allVideoGames)
+    console.log(reducerVideoGames)
 
      const [currentPage, setcurrentPage] = useState(1);
      const [videogamesPerPage] = useState(12);
@@ -53,7 +54,7 @@ const Home = () => {
 
         <Pagination
          videogamesPerPage = {videogamesPerPage}
-         allVideoGames = {reducerVideoGames.length}
+         reducerVideoGames = {reducerVideoGames?.length}
          paginate = {paginate}
          /> 
          

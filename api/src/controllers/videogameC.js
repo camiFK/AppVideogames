@@ -25,27 +25,34 @@ const videoGamesApi = async () => {
   }
 
   const videoGamesDb = async () => { 
-    const allGamesDb = await Videogame.findAll({
-     include: [
-      { 
-       model: Genres,
-       attributes: ['name'],
-       through: {attributes: [] }
-      },
-      {
-        model: Platforms,
-        attributes: ["name"],
-        through: { attributes: [] }
-    }]
-   })
-   return allGamesDb;
+    try {
+      return await Videogame.findAll({
+       include: [
+        { 
+         model: Genres,
+         attributes: ['name'],
+         through: {attributes: [] }
+        },
+        {
+          model: Platforms,
+          attributes: ["name"],
+          through: { attributes: [] }
+      }]
+     })
+      
+    } catch (error) {console.log(error)}
+   
   }
   
   const getAllGames = async (id) => {
-    const apiGames = await videoGamesApi(id); // Guardo la llamada a los juegos de la Api
-    const dbGames = await videoGamesDb(id); // Guardo la llamada a los juegos de la base de datos
-    const allGames = apiGames.concat(dbGames) // Los junto
-    return allGames
+    try {
+      const apiGames = await videoGamesApi(id); // Guardo la llamada a los juegos de la Api
+      const dbGames = await videoGamesDb(); // Guardo la llamada a los juegos de la base de datos
+      let allGames = [...apiGames, ...dbGames] // Los junto
+      return allGames   
+    } catch (error) {
+      console.log(error)
+    }
   } 
 
   const getVideogameById = async (id) => {
