@@ -76,3 +76,12 @@ export const postVideogame = (input) => {
     } catch (error) { console.log(error) }
   }
 }
+
+export const deleteVideogame = (id) => {
+  return async (dispatch) => {
+    try {
+      let deletedVideogame = await axios.delete(`http://localhost:3001/videogames/${id}`)
+      return deletedVideogame
+    } catch (error) { console.log(error) }
+  }
+}

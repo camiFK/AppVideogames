@@ -6,7 +6,6 @@ const videogamesRoute = require('./videogames')
 const createVGroute = require('./create')
 const platformsRoute = require('./platforms')
 
-
 const router = Router();
 
 // Configurar los routers
