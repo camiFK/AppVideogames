@@ -52,11 +52,16 @@ const videoGamesApi = async () => {
 
     if (id.includes('-')) {
       const videogamedb = await Videogame.findByPk(id, {
-        include: {
+        include: [{
           model: Genres,
           attributes: ['name'],
           through: {attributes: []}
-        }
+        },
+        {
+          model: Platforms,
+          attributes: ["name"],
+          through: { attributes: [] }
+      }]
       });
       return videogamedb;
       
