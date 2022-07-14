@@ -1,3 +1,4 @@
+import swal from "sweetalert";
 const initialState = {
     allVideoGames: [],
     allVideoGamesCopy: [],
@@ -50,7 +51,10 @@ const rootReducer = (state = initialState, action) => {
 
              if (videogameFiltered.length <= 0) {
                 videogameFiltered = videogameCopy;
-                alert('Sorry, no results found')
+                swal({
+                    title: "No results found",
+                    icon: "error",
+                })
              }
             return {
                 ...state,
@@ -70,7 +74,10 @@ const rootReducer = (state = initialState, action) => {
 
             if (videogameFiltered2.length <= 0) {
                 videogameFiltered2 = videogameCopy2;
-                alert('Sorry, no results found')
+                swal({
+                    title: "No results found",
+                    icon: "error",
+                })
              }
             
             return {
