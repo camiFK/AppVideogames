@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+<p align='center'>
+  <img width='550' src='https://mobimg.b-cdn.net/v2/fetch/a0/a0e8130daf0b55b2e6464fe4db345860.jpeg'/>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Videogames App
 
-## Available Scripts
+Viodeogames App is a Single page application designed and developed as a personal project.
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+- [ ] React
+- [ ] Redux
+- [ ] Css Modules - Styled Components (no frameworks)
+- [ ] NodeJs - Express
+- [ ] Sequelize - PostgreSQL
+- [ ] API - [rawg](https://rawg.io/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Database
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Models
+##### Videogame:
+- UUID (to avoid problems with api ids)
+- Name
+- Description
+- Release date
+- Rating
+- Image
+##### Genres:
+- Id
+- Name
+##### Platforms:
+- Id
+- Name
 
-### `npm test`
+Intermediates tables to relate all entities.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Backend
+<p>
+Node/Express server.
+Filtering, ordering, and paging provided by the external API haven't been used. All these features have been implemented by me.
+<p>
+  
+### Routes
+  
+ - [ ] __GET /videogames__:
+   - Gets a list of 100 Videogames from api.rawg.
+   - Returns necessary data for the main route.
+ - [ ] __GET /videogames?name="..."__:
+   - Gets the videogame whose name matches the query parameter (may be from the API or Database).
+   - If there is no matching, a message is shown.
+ - [ ] __GET /videogame/{id}__:
+   - Gets the detail from the videogame selected according to the id (may be from the API or Database).
+   - Returns necessary data for the detailed route.
+ - [ ] __GET /genres__:
+   - Gets all Videogames genres.
+   - First, a call to the api.rawg is made to save the results in the database. Then, data is used directly from the database.
+ - [ ] __GET /platforms__:
+   - Gets all Videogames platforms.
+   - First, a call to the api.rawg is made to save the results in the database. Then, data is used directly from the database.
+ - [ ] __POST /videogame__:
+   - Receives from body the data collected from the controlled form.
+   - Creates a new Videogame in the database.
+   
+## Frontend
+<p>
+React/Redux application.
+<p>
 
-### `npm run build`
+### Routes
+  
+ __Landing Page__:
+- [ ] Representative image for the project.
+- [ ] Home button.
+  
+__Main Route__:
+- [ ] Search bar for searching Videogames.
+- [ ] Videogame cards. Information shown:
+  - Image
+  - Name
+  - Genres
+- [ ] Sort by Genres.
+- [ ] Sort by Platforms.
+- [ ] Pagination to show and list all Videogames (12 per page).
+  
+__Detail Route__:
+- [ ] Fields shown in the main route (image, name, and genres).
+- [ ] Release date.
+- [ ] Rating.
+- [ ] Platforms.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+__Creation Route__: 
+- [ ] JavaScript controlled form to fill in with the information in the detail route.
+- [ ] Add multiple genres.
+- [ ] Add multiple platforms.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
