@@ -6,7 +6,7 @@ const axios = require('axios');
 export const getAllVideoGames =  () => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`http://localhost:3001/videogames`);
+      const json = await axios.get(`https://cfk-videogames.herokuapp.com/videogames`);
       dispatch({type: 'GET_ALL_VIDEOGAMES', payload: json.data})
     } catch (error) {console.error(error);}
   };
@@ -15,7 +15,7 @@ export const getAllVideoGames =  () => {
 export const getVideogameByName = (name) => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
+      const json = await axios.get(`https://cfk-videogames.herokuapp.com/videogames?name=${name}`)
       dispatch({type: 'GET_VIDEOGAME', payload: json.data})
     } catch (error) {
       swal({
@@ -30,7 +30,7 @@ export const getVideogameByName = (name) => {
 export const getVideogameDetail = (id) => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`http://localhost:3001/videogames/${id}`)
+      const json = await axios.get(`https://cfk-videogames.herokuapp.com/videogames/${id}`)
       dispatch({type: 'GET_DETAIL', payload: json.data})
     } catch (error) {
       console.log(error)
@@ -41,7 +41,7 @@ export const getVideogameDetail = (id) => {
 export const getGenres = () => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`http://localhost:3001/genres`)
+      const json = await axios.get(`https://cfk-videogames.herokuapp.com/genres`)
       dispatch({type: 'GET_GENRES', payload: json.data})
     } catch (error) { console.log(error) }
   }
@@ -50,7 +50,7 @@ export const getGenres = () => {
 export const getPlatforms = () => {
   return async (dispatch) => {
     try {
-      const json = await axios.get(`http://localhost:3001/platforms`)
+      const json = await axios.get(`https://cfk-videogames.herokuapp.com/platforms`)
       dispatch({type: 'GET_PLATFORMS', payload: json.data})     
     } catch (error) { console.log(error) }
   }
@@ -71,7 +71,7 @@ export const reset = () => {
 export const postVideogame = (input) => {
   return async (dispatch) => {
     try {
-      let newVideogame = await axios.post(`http://localhost:3001/create`, input)
+      let newVideogame = await axios.post(`https://cfk-videogames.herokuapp.com/create`, input)
       return newVideogame
     } catch (error) { console.log(error) }
   }
@@ -80,7 +80,7 @@ export const postVideogame = (input) => {
 export const deleteVideogame = (id) => {
   return async (dispatch) => {
     try {
-      let deletedVideogame = await axios.delete(`http://localhost:3001/videogames/${id}`)
+      let deletedVideogame = await axios.delete(`https://cfk-videogames.herokuapp.com/videogames/${id}`)
       return deletedVideogame
     } catch (error) { console.log(error) }
   }
